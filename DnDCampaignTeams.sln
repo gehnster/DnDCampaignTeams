@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnDCampaignTeams", "DnDCampaignTeams\DnDCampaignTeams.csproj", "{12E5BF18-4AEE-4C02-8AA9-E561C7F9DA83}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnDCampaignTeamsTest", "DnDCampaignTeamsTest\DnDCampaignTeamsTest.csproj", "{6B68020B-2CDB-43CC-B31B-95BE3D29BE11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{12E5BF18-4AEE-4C02-8AA9-E561C7F9DA83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12E5BF18-4AEE-4C02-8AA9-E561C7F9DA83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12E5BF18-4AEE-4C02-8AA9-E561C7F9DA83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B68020B-2CDB-43CC-B31B-95BE3D29BE11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B68020B-2CDB-43CC-B31B-95BE3D29BE11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B68020B-2CDB-43CC-B31B-95BE3D29BE11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B68020B-2CDB-43CC-B31B-95BE3D29BE11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
