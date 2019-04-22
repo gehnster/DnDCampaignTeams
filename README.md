@@ -5,8 +5,12 @@
 - Visual Studio 2019 Professional
 - .NET Core 2.2
 
+## Run
+- dotnet run
+- https://localhost:44365/
+- dotnet test
+
 ## Notes
 - Front-end is Razor Pages with Bootstrap 4
 - Unit tests are using xUnit.
-- EF Core is used with the provided in-memory database
-- EF Core In-Memory is not a relational database and so doesn't follow referential integrity restraints and concurrency is not supported.
+- EF Core is used with SqLite in-memory database
