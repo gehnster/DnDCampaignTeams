@@ -11,7 +11,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Character.Name" class="control-label"></label>
@@ -32,15 +32,6 @@
                 <label asp-for="Character.Level" class="control-label"></label>
                 <input asp-for="Character.Level" class="form-control" />
                 <span asp-validation-for="Character.Level" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Character.Avatar" class="control-label"></label>
-                <input asp-for="Character.Avatar" class="form-control" />
-                <span asp-validation-for="Character.Avatar" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Character.PlayerId" class="control-label"></label>
-                <select asp-for="Character.PlayerId" class ="form-control" asp-items="ViewBag.PlayerId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

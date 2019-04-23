@@ -11,7 +11,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Campaign.Name" class="control-label"></label>
@@ -24,9 +24,9 @@
                 <span asp-validation-for="Campaign.Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Campaign.Logo" class="control-label"></label>
-                <input asp-for="Campaign.Logo" class="form-control" />
-                <span asp-validation-for="Campaign.Logo" class="text-danger"></span>
+                <label asp-for="Campaign.LogoLocation" class="control-label"></label>
+                <input type="file" asp-for="Image" />
+                <span asp-validation-for="Image" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

@@ -19,9 +19,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Campaign[0].Description)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Campaign[0].Logo)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -35,9 +32,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Logo)
-            </td>
-            <td>
+                <a asp-page="/Character/Index" asp-route-campaignId="@item.Id">Campaign Characters</a> |
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>

@@ -36,16 +36,16 @@
             @Html.DisplayFor(model => model.Character.Level)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Character.Avatar)
+            Player Name
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Character.Avatar)
+            @Model.Character.Player.FirstName  @Model.Character.Player.LastName
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Character.Player)
+            @Html.DisplayNameFor(model => model.Character.AvatarLocation)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Character.Player.Id)
+            <img asp-append-version="false" src="~/images/@Model.Character.AvatarLocation" />
         </dd>
     </dl>
 </div>

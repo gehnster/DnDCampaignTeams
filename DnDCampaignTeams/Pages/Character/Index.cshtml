@@ -8,7 +8,8 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Create New</a> |
+    <a asp-page="Index">All Characters</a>
 </p>
 <table class="table">
     <thead>
@@ -24,12 +25,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Character[0].Level)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Character[0].Avatar)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Character[0].Player)
             </th>
             <th></th>
         </tr>
@@ -48,12 +43,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Level)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Avatar)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Player.Id)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |

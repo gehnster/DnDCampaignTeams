@@ -8,20 +8,27 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DnDCampaignTeams;
 using DnDCampaignTeams.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace DnDCampaignTeams.Pages.Campaign
 {
     public class EditModel : PageModel
     {
         private readonly DnDCampaignTeams.DnDCampaignTeamsContext _context;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
-        public EditModel(DnDCampaignTeams.DnDCampaignTeamsContext context)
+        public EditModel(DnDCampaignTeams.DnDCampaignTeamsContext context, IHostingEnvironment hostingEnvironment)
         {
             _context = context;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         [BindProperty]
         public Models.Campaign Campaign { get; set; }
+        [BindProperty]
+        public IFormFile Image { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -44,6 +51,21 @@ namespace DnDCampaignTeams.Pages.Campaign
             if (!ModelState.IsValid)
             {
                 return Page();
+            }
+
+            if (Image != null)
+            {
+                if (!Image.ContentType.Contains("image"))
+                {
+                    ModelState.AddModelError("Image", "File needs to be an image.");
+                    return Page();
+                }
+
+                var fileName = Utility.GetUniqueFileName(Image.FileName);
+                var uploads = Path.Combine(_hostingEnvironment.WebRootPath, "images");
+                var filePath = Path.Combine(uploads, fileName);
+                Image.CopyTo(new FileStream(filePath, FileMode.Create));
+                Campaign.LogoLocation = fileName; // Set the file name
             }
 
             _context.Attach(Campaign).State = EntityState.Modified;

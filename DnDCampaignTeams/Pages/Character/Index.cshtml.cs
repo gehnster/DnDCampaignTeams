@@ -21,10 +21,21 @@ namespace DnDCampaignTeams.Pages.Character
 
         public IList<Models.Character> Character { get;set; }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(int? playerId, int? campaignId)
         {
-            Character = await _context.Characters
+            if (playerId != null)
+            {
+                Character = await _context.Characters.Where(m => m.PlayerId == playerId).ToListAsync(); 
+            }
+            else if(campaignId != null)
+            {
+                Character = await _context.Characters.Where(m => m.CampaignId == campaignId).ToListAsync();
+            }
+            else
+            {
+                Character = await _context.Characters
                 .Include(c => c.Player).ToListAsync();
+            }
         }
     }
 }
