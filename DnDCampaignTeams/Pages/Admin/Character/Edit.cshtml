@@ -35,6 +35,23 @@
                 <span asp-validation-for="Character.Level" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label class="control-label">Player</label>
+                <select asp-for="Character.PlayerId" class="form-control" asp-items="ViewBag.PlayerId"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Campaign</label>
+                <select asp-for="Character.CampaignId" class="form-control" asp-items="ViewBag.CampaignId">
+                    <option value="">None</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Character.AvatarLocation" class="control-label"></label>
+                <input type="hidden" asp-for="Character.AvatarLocation" />
+                <img asp-append-version="false" src="~/images/@Model.Character.AvatarLocation" />
+                <input type="file" asp-for="Image" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

@@ -19,7 +19,6 @@ namespace DnDCampaignTeams.Models
         public Campaign Campaign { get; set; }
         [Required]
         public int PlayerId { get; set; }
-        [Required]
         public Player Player { get; set; }
 
     }
