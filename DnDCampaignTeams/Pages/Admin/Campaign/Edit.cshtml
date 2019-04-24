@@ -27,7 +27,10 @@
             <div class="form-group">
                 <label asp-for="Campaign.LogoLocation" class="control-label"></label>
                 <input type="hidden" asp-for="Campaign.LogoLocation" />
-                <img asp-append-version="false" src="~/images/@Model.Campaign.LogoLocation" />
+                @if (Model.Campaign.LogoLocation != null)
+                {
+                    <img asp-append-version="false" src="~/images/@Model.Campaign.LogoLocation" />
+                }
                 <input type="file" asp-for="Image" />
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>

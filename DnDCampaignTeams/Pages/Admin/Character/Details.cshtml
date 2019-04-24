@@ -45,13 +45,16 @@
             Campaign Name
         </dt>
         <dd class="col-sm-10">
-            @Model.Character.Campaign.Name
+            @Model.Character.Campaign?.Name
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Character.AvatarLocation)
         </dt>
         <dd class="col-sm-10">
-            <img asp-append-version="false" src="~/images/@Model.Character.AvatarLocation" />
+            @if (Model.Character.AvatarLocation != null)
+            {
+                <img asp-append-version="false" src="~/images/@Model.Character.AvatarLocation" />
+            }
         </dd>
     </dl>
 </div>

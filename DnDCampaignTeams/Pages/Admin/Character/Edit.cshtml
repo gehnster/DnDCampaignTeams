@@ -47,7 +47,10 @@
             <div class="form-group">
                 <label asp-for="Character.AvatarLocation" class="control-label"></label>
                 <input type="hidden" asp-for="Character.AvatarLocation" />
-                <img asp-append-version="false" src="~/images/@Model.Character.AvatarLocation" />
+                @if (Model.Character.AvatarLocation != null)
+                {
+                    <img asp-append-version="false" src="~/images/@Model.Character.AvatarLocation" />
+                }
                 <input type="file" asp-for="Image" />
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
