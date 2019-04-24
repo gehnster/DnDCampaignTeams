@@ -11,5 +11,4 @@ It should be https://localhost:44365/
 
 ## Notes
 - Front-end is Razor Pages with Bootstrap 4
-- Unit tests are using xUnit.
-- EF Core is used with SqLite in-memory database
+- EF Core is used with in-memory database
