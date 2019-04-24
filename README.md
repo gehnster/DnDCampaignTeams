@@ -7,6 +7,7 @@
 
 ## How to run
 The best way to run is to download/clone the github repo and open the DnDCampaignTeams solution file within Visual Studio 2019, then click F5 to run it. If the browser does not pop up then look in the output window for the URL needed to start the application.
+It should be https://localhost:44365/
 
 ## Notes
 - Front-end is Razor Pages with Bootstrap 4
