@@ -5,10 +5,8 @@
 - Visual Studio 2019 Professional
 - .NET Core 2.2
 
-## Run
-- dotnet run
-- https://localhost:44365/
-- dotnet test
+## How to run
+The best way to run is to download/clone the github repo and open the DnDCampaignTeams solution file within Visual Studio 2019, then click F5 to run it. If the browser does not pop up then look in the output window for the URL needed to start the application.
 
 ## Notes
 - Front-end is Razor Pages with Bootstrap 4
