@@ -1,11 +1,11 @@
 ﻿@page
-@model DnDCampaignTeams.Pages.Campaign.EditModel
+@model DnDCampaignTeams.Pages.Admin.Campaign.CreateModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create";
 }
 
-<h1>Edit</h1>
+<h1>Create</h1>
 
 <h4>Campaign</h4>
 <hr />
@@ -13,7 +13,6 @@
     <div class="col-md-4">
         <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Campaign.Id" />
             <div class="form-group">
                 <label asp-for="Campaign.Name" class="control-label"></label>
                 <input asp-for="Campaign.Name" class="form-control" />
@@ -26,20 +25,18 @@
             </div>
             <div class="form-group">
                 <label asp-for="Campaign.LogoLocation" class="control-label"></label>
-                <input type="hidden" asp-for="Campaign.LogoLocation" />
-                <img asp-append-version="false" src="~/images/@Model.Campaign.LogoLocation" />
                 <input type="file" asp-for="Image" />
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="Index">Back to List</a>
 </div>
 
 @section Scripts {

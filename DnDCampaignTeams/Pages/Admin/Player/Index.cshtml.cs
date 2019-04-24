@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using DnDCampaignTeams;
+using DnDCampaignTeams.Models;
 
-namespace DnDCampaignTeams.Pages
+namespace DnDCampaignTeams.Pages.Admin.Player
 {
     public class IndexModel : PageModel
     {
@@ -17,11 +19,11 @@ namespace DnDCampaignTeams.Pages
             _context = context;
         }
 
-        public IList<Models.Campaign> Campaign { get; set; }
+        public IList<Models.Player> Player { get;set; }
 
         public async Task OnGetAsync()
         {
-            Campaign = await _context.Campaigns.ToListAsync();
+            Player = await _context.Players.ToListAsync();
         }
     }
 }

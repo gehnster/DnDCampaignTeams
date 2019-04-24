@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using DnDCampaignTeams;
 using DnDCampaignTeams.Models;
 
-namespace DnDCampaignTeams.Pages.Character
+namespace DnDCampaignTeams.Pages.Admin.Character
 {
     public class CreateModel : PageModel
     {

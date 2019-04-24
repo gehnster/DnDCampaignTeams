@@ -5,34 +5,46 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using DnDCampaignTeams;
 using DnDCampaignTeams.Models;
 using Microsoft.AspNetCore.Http;
-using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
-namespace DnDCampaignTeams.Pages.Campaign
+namespace DnDCampaignTeams.Pages.Admin.Campaign
 {
-    public class CreateModel : PageModel
+    public class EditModel : PageModel
     {
         private readonly DnDCampaignTeams.DnDCampaignTeamsContext _context;
         private readonly IHostingEnvironment _hostingEnvironment;
 
-        public CreateModel(DnDCampaignTeams.DnDCampaignTeamsContext context, IHostingEnvironment environment)
+        public EditModel(DnDCampaignTeams.DnDCampaignTeamsContext context, IHostingEnvironment hostingEnvironment)
         {
             _context = context;
-            _hostingEnvironment = environment;
-        }
-
-        public IActionResult OnGet()
-        {
-            return Page();
+            _hostingEnvironment = hostingEnvironment;
         }
 
         [BindProperty]
         public Models.Campaign Campaign { get; set; }
         [BindProperty]
         public IFormFile Image { get; set; }
+
+        public async Task<IActionResult> OnGetAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Campaign = await _context.Campaigns.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (Campaign == null)
+            {
+                return NotFound();
+            }
+            return Page();
+        }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -43,7 +55,7 @@ namespace DnDCampaignTeams.Pages.Campaign
 
             if (Image != null)
             {
-                if(!Image.ContentType.Contains("image"))
+                if (!Image.ContentType.Contains("image"))
                 {
                     ModelState.AddModelError("Image", "File needs to be an image.");
                     return Page();
@@ -56,10 +68,30 @@ namespace DnDCampaignTeams.Pages.Campaign
                 Campaign.LogoLocation = fileName; // Set the file name
             }
 
-            _context.Campaigns.Add(Campaign);
-            await _context.SaveChangesAsync();
+            _context.Attach(Campaign).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CampaignExists(Campaign.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
             return RedirectToPage("./Index");
+        }
+
+        private bool CampaignExists(int id)
+        {
+            return _context.Campaigns.Any(e => e.Id == id);
         }
     }
 }

@@ -8,18 +8,17 @@ using Microsoft.EntityFrameworkCore;
 using DnDCampaignTeams;
 using DnDCampaignTeams.Models;
 
-namespace DnDCampaignTeams.Pages.Character
+namespace DnDCampaignTeams.Pages.Admin.Character
 {
-    public class DeleteModel : PageModel
+    public class DetailsModel : PageModel
     {
         private readonly DnDCampaignTeams.DnDCampaignTeamsContext _context;
 
-        public DeleteModel(DnDCampaignTeams.DnDCampaignTeamsContext context)
+        public DetailsModel(DnDCampaignTeams.DnDCampaignTeamsContext context)
         {
             _context = context;
         }
 
-        [BindProperty]
         public Models.Character Character { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -37,24 +36,6 @@ namespace DnDCampaignTeams.Pages.Character
                 return NotFound();
             }
             return Page();
-        }
-
-        public async Task<IActionResult> OnPostAsync(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Character = await _context.Characters.FindAsync(id);
-
-            if (Character != null)
-            {
-                _context.Characters.Remove(Character);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToPage("./Index");
         }
     }
 }

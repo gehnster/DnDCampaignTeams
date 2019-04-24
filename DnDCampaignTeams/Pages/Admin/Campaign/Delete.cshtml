@@ -1,5 +1,5 @@
 ﻿@page
-@model DnDCampaignTeams.Pages.Player.DeleteModel
+@model DnDCampaignTeams.Pages.Admin.Campaign.DeleteModel
 
 @{
     ViewData["Title"] = "Delete";
@@ -9,31 +9,31 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Player</h4>
+    <h4>Campaign</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Player.FirstName)
+            @Html.DisplayNameFor(model => model.Campaign.Name)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Player.FirstName)
+            @Html.DisplayFor(model => model.Campaign.Name)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Player.LastName)
+            @Html.DisplayNameFor(model => model.Campaign.Description)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Player.LastName)
+            @Html.DisplayFor(model => model.Campaign.Description)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Player.DiscordHandle)
+            Logo
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Player.DiscordHandle)
+            <img asp-append-version="false" src="~/images/@Model.Campaign.LogoLocation" />
         </dd>
     </dl>
     
     <form method="post">
-        <input type="hidden" asp-for="Player.Id" />
+        <input type="hidden" asp-for="Campaign.Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-page="./Index">Back to List</a>
     </form>

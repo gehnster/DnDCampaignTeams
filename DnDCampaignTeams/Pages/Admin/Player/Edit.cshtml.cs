@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using DnDCampaignTeams;
 using DnDCampaignTeams.Models;
 
-namespace DnDCampaignTeams.Pages.Character
+namespace DnDCampaignTeams.Pages.Admin.Player
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace DnDCampaignTeams.Pages.Character
         }
 
         [BindProperty]
-        public Models.Character Character { get; set; }
+        public Models.Player Player { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,14 +30,12 @@ namespace DnDCampaignTeams.Pages.Character
                 return NotFound();
             }
 
-            Character = await _context.Characters
-                .Include(c => c.Player).FirstOrDefaultAsync(m => m.Id == id);
+            Player = await _context.Players.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Character == null)
+            if (Player == null)
             {
                 return NotFound();
             }
-           ViewData["PlayerId"] = new SelectList(_context.Players, "Id", "Id");
             return Page();
         }
 
@@ -48,7 +46,7 @@ namespace DnDCampaignTeams.Pages.Character
                 return Page();
             }
 
-            _context.Attach(Character).State = EntityState.Modified;
+            _context.Attach(Player).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +54,7 @@ namespace DnDCampaignTeams.Pages.Character
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CharacterExists(Character.Id))
+                if (!PlayerExists(Player.Id))
                 {
                     return NotFound();
                 }
@@ -69,9 +67,9 @@ namespace DnDCampaignTeams.Pages.Character
             return RedirectToPage("./Index");
         }
 
-        private bool CharacterExists(int id)
+        private bool PlayerExists(int id)
         {
-            return _context.Characters.Any(e => e.Id == id);
+            return _context.Players.Any(e => e.Id == id);
         }
     }
 }

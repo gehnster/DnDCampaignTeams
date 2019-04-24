@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using DnDCampaignTeams;
 using DnDCampaignTeams.Models;
 
-namespace DnDCampaignTeams.Pages.Campaign
+namespace DnDCampaignTeams.Pages.Admin.Player
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace DnDCampaignTeams.Pages.Campaign
         }
 
         [BindProperty]
-        public Models.Campaign Campaign { get; set; }
+        public Models.Player Player { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +29,9 @@ namespace DnDCampaignTeams.Pages.Campaign
                 return NotFound();
             }
 
-            Campaign = await _context.Campaigns.FirstOrDefaultAsync(m => m.Id == id);
+            Player = await _context.Players.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Campaign == null)
+            if (Player == null)
             {
                 return NotFound();
             }
@@ -45,11 +45,11 @@ namespace DnDCampaignTeams.Pages.Campaign
                 return NotFound();
             }
 
-            Campaign = await _context.Campaigns.FindAsync(id);
+            Player = await _context.Players.FindAsync(id);
 
-            if (Campaign != null)
+            if (Player != null)
             {
-                _context.Campaigns.Remove(Campaign);
+                _context.Players.Remove(Player);
                 await _context.SaveChangesAsync();
             }
 

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using DnDCampaignTeams;
 using DnDCampaignTeams.Models;
 
-namespace DnDCampaignTeams.Pages.Player
+namespace DnDCampaignTeams.Pages.Admin.Character
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace DnDCampaignTeams.Pages.Player
         }
 
         [BindProperty]
-        public Models.Player Player { get; set; }
+        public Models.Character Character { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,12 +30,14 @@ namespace DnDCampaignTeams.Pages.Player
                 return NotFound();
             }
 
-            Player = await _context.Players.FirstOrDefaultAsync(m => m.Id == id);
+            Character = await _context.Characters
+                .Include(c => c.Player).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Player == null)
+            if (Character == null)
             {
                 return NotFound();
             }
+           ViewData["PlayerId"] = new SelectList(_context.Players, "Id", "Id");
             return Page();
         }
 
@@ -46,7 +48,7 @@ namespace DnDCampaignTeams.Pages.Player
                 return Page();
             }
 
-            _context.Attach(Player).State = EntityState.Modified;
+            _context.Attach(Character).State = EntityState.Modified;
 
             try
             {
@@ -54,7 +56,7 @@ namespace DnDCampaignTeams.Pages.Player
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PlayerExists(Player.Id))
+                if (!CharacterExists(Character.Id))
                 {
                     return NotFound();
                 }
@@ -67,9 +69,9 @@ namespace DnDCampaignTeams.Pages.Player
             return RedirectToPage("./Index");
         }
 
-        private bool PlayerExists(int id)
+        private bool CharacterExists(int id)
         {
-            return _context.Players.Any(e => e.Id == id);
+            return _context.Characters.Any(e => e.Id == id);
         }
     }
 }

@@ -15,6 +15,9 @@
 
 
   <ItemGroup>
+    <Folder Include="Pages\Campaign\" />
+    <Folder Include="Pages\Character\" />
+    <Folder Include="Pages\Player\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 

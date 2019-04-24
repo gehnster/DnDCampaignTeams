@@ -12,7 +12,6 @@ namespace DnDCampaignTeams.Models
         public string LastName { get; set; }
         [StringLength(37, MinimumLength = 2, ErrorMessage = "Discord Handle should be between 2 and 37 characters long")]
         public string DiscordHandle { get; set; }
-        //[InverseProperty("Player")]
         public List<Character> Characters { get; set; }
     }
 }

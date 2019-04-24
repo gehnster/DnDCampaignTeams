@@ -1,5 +1,5 @@
 ﻿@page
-@model DnDCampaignTeams.Pages.Campaign.IndexModel
+@model DnDCampaignTeams.Pages.Admin.Campaign.IndexModel
 
 @{
     ViewData["Title"] = "Index";
@@ -7,6 +7,9 @@
 
 <h1>Index</h1>
 
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
         <tr>
@@ -29,8 +32,10 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                <a asp-page="/Character/Index" asp-route-playerId="@item.Id">View Characters</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                <a asp-page="/Admin/Character/Index" asp-route-campaignId="@item.Id">Edit Campaign Characters</a> |
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }
