@@ -29,7 +29,7 @@ namespace DnDCampaignTeams.Pages.Admin.Character
             }
 
             Character = await _context.Characters
-                .Include(c => c.Player).FirstOrDefaultAsync(m => m.Id == id);
+                .Include(c => c.Player).Include(c => c.Campaign).FirstOrDefaultAsync(m => m.Id == id);
 
             if (Character == null)
             {
